@@ -14,12 +14,23 @@ let ReviewObject = function (pName, pCity, pCuisine, pStars, pPoster) {
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("getServerData").addEventListener("click", function () {
-        createList();  
+        createList("all", "");  
+    });
+
+    document.getElementById("getCity").addEventListener("click", function () {
+        let which = document.getElementById("whichCity").value;
+        createList("city",which);  
+    });
+
+    document.getElementById("getCuisine").addEventListener("click", function () {
+        let which = document.getElementById("whichCuisine").value;
+        createList("cuisine",which); 
     });
 
     document.getElementById("postreview").addEventListener("click", function () {
         postnew();  
     });
+    
     
 });
 
@@ -52,7 +63,7 @@ function postnew() {
         });
 }
   
-function createList() {
+function createList(pWhich, selection) {
     
 	// run locally
     //$.get("http://localhost:7071/api/kurtRestaurant", function(data, status){ 
@@ -61,7 +72,32 @@ function createList() {
 	// run on Azure
     $.get("https://kurtrestaurant.azurewebsites.net/api/kurtrestaurant", function(data, status){ 
         dataArray = JSON.parse(data);
-        console.log(dataArray);
+        subsetArray = [];
+        if(pWhich == 'all'){
+            for(i = 0; i < dataArray.length; i++){
+            subsetArray[i] = dataArray[i];
+            }
+        }
+        if(pWhich == "city"){
+            for(i = 0; i < dataArray.length; i++){
+                console.log(selection);
+                if(dataArray[i].city == selection){
+                subsetArray.push(dataArray[i]);
+                }
+            }
+        }
+        if(pWhich == "cuisine"){
+            for(i = 0; i < dataArray.length; i++){
+                console.log(selection);
+                if(dataArray[i].cuisine == selection){
+                subsetArray.push(dataArray[i]);
+                }
+            }
+        }
+
+    //    }
+    //    for(i = 0, i < dataArray.length, i++)
+    //    if(dataArray[i].city = )
        
                 
       //clear prior data
@@ -82,18 +118,18 @@ function createList() {
         hCell5.innerHTML = "<b>Poster</b>";
        
 
-        for (let i = 0; i < dataArray.length; i++) {
+        for (let i = 0; i < subsetArray.length; i++) {
             let row = table.insertRow(-1);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
             let cell4 = row.insertCell(3);
             let cell5 = row.insertCell(4);
-            cell1.innerHTML = dataArray[i].name;
-            cell2.innerHTML = dataArray[i].city;
-            cell3.innerHTML = dataArray[i].cuisine 
-            cell4.innerHTML = dataArray[i].stars;
-            cell5.innerHTML = dataArray[i].poster;
+            cell1.innerHTML = subsetArray[i].name;
+            cell2.innerHTML = subsetArray[i].city;
+            cell3.innerHTML = subsetArray[i].cuisine 
+            cell4.innerHTML = subsetArray[i].stars;
+            cell5.innerHTML = subsetArray[i].poster;
         }
 
     });
