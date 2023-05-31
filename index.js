@@ -46,7 +46,7 @@ function postnew() {
 
     $.ajax({
         //url : "http://localhost:7071/api/kurtRestaurantWrite",
-        url : "https://kurtrestaurantwriter.azurewebsites.net/api/kurtrestaurantwrite",
+        url : "https://kurtrestaurantwriter.azurewebsites.net/api/kurtrestaurantwriter",
         type: "POST",
         data: JSON.stringify(newOne),
         contentType: "application/json; charset=utf-8",
