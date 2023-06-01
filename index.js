@@ -11,7 +11,7 @@ let ReviewObject = function (pName, pCity, pCuisine, pStars, pPoster) {
 }
 
 // cant use reuire here *************************************
-const { WebPubSubServiceClient } = require('@azure/web-pubsub');
+//const { WebPubSubServiceClient } = require('@azure/web-pubsub');
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -46,35 +46,35 @@ function postnew() {
     let newOne = new ReviewObject(newName, newCity, newCuisine, newStars, newPoster);
     console.log(newOne);
 
-    const hub = "kurtpubsub.webpubsub.azure.com";
-    var connectionString = "Endpoint=https://kurtpubsub.webpubsub.azure.com;AccessKey=p/iuO4B31PVliio9K6jmjLv30+M7u6MXBN5jxW0mf94=;Version=1.0;";
-    let serviceClient = new WebPubSubServiceClient(connectionString, hub);
-    // by default it uses `application/json`, specify contentType as `text/plain` if you want plain-text
-    serviceClient.sendToAll(newOne, { contentType: "application/json" });
+    // const hub = "kurtpubsub.webpubsub.azure.com";
+    // var connectionString = "Endpoint=https://kurtpubsub.webpubsub.azure.com;AccessKey=p/iuO4B31PVliio9K6jmjLv30+M7u6MXBN5jxW0mf94=;Version=1.0;";
+    // let serviceClient = new WebPubSubServiceClient(connectionString, hub);
+    // // by default it uses `application/json`, specify contentType as `text/plain` if you want plain-text
+    // serviceClient.sendToAll(newOne, { contentType: "application/json" });
 
-    // $.ajax({
-    // 	// run locally
-    //     //url : "http://localhost:7071/api/kurtrestaurantwriter",
+    $.ajax({
+    	// run locally
+        //url : "http://localhost:7071/api/kurtrestaurantwriter",
         
-    //     // run on azure
-    //     //url : "https://kurtrestaurantwriter.azurewebsites.net/api/kurtrestaurantwriter",
+        // run on azure
+        url : "https://kurtrestaurantwriter.azurewebsites.net/api/kurtrestaurantwriter",
 
        
         
-    //     type: "POST",
-    //     data: JSON.stringify(newOne),
-    //     contentType: "application/json; charset=utf-8",
-    //     dataType   : "json",
-    //     success: function (result) {
-    //         console.log(result);
-    //         document.getElementById("name").value = "";
-    //         document.getElementById("city").value = "";
-    //         document.getElementById("cuisine").value = ""
-    //         document.getElementById("stars").value = "";
-    //         document.getElementById("poster").value = "";
+        type: "POST",
+        data: JSON.stringify(newOne),
+        contentType: "application/json; charset=utf-8",
+        dataType   : "json",
+        success: function (result) {
+            console.log(result);
+            document.getElementById("name").value = "";
+            document.getElementById("city").value = "";
+            document.getElementById("cuisine").value = ""
+            document.getElementById("stars").value = "";
+            document.getElementById("poster").value = "";
             
-    //       }
-    //     });
+          }
+        });
 }
   
 function createList(pWhich, selection) {
