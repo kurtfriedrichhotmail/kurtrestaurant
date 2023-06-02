@@ -49,12 +49,14 @@ function postnew() {
    
     $.ajax({
     	// run locally
-        url : "http://localhost:7071/api/kurtrestaurantwriter",
+        //url : "http://localhost:7071/api/kurtrestaurantwriter",
         
         
         
         // run on azure
-        //url : "https://kurtrestaurantwriter.azurewebsites.net/api/kurtrestaurantwriter",
+        url : "https://kurtrestaurantwriter.azurewebsites.net/api/kurtrestaurantwriter",
+        
+        
 
        
         
@@ -64,11 +66,11 @@ function postnew() {
         //dataType   : "json",
         success: function (result) {
             console.log(result);
-            document.getElementById("name").value = "";
-            document.getElementById("city").value = "";
-            document.getElementById("cuisine").value = ""
-            document.getElementById("stars").value = "";
-            document.getElementById("poster").value = "";
+            //document.getElementById("name").value = "";
+            //document.getElementById("city").value = "";
+            //document.getElementById("cuisine").value = ""
+            //document.getElementById("stars").value = "";
+            //document.getElementById("poster").value = "";
             
           }
         });
