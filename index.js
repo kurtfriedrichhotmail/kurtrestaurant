@@ -33,8 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
         postnew();  
     });
     
+
+    document.getElementById("StartWebListener").addEventListener("click", function () {
+        StartWebListener();  
+    });
     
 });
+
+function StartWebListener()   
+{
+    $.get("https://listenthenwritedb.azurewebsites.net/api/ListenThenWriteDB", function(data, status){  });
+}
 
 function postnew() {
     let newName = document.getElementById("name").value;
