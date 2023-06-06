@@ -88,11 +88,11 @@ function postnew() {
 function createList(pWhich, selection) {
     
 	// run locally
-    //$.get("http://localhost:7071/api/kurtRestaurant", function(data, status){ 
+    //$.get("http://localhost:7071/api/readfrommongo", function(data, status){ 
     
     
 	// run on Azure
-    $.get("https://kurtrestaurant.azurewebsites.net/api/kurtwritecosmosinclas", function(data, status){ 
+    $.get("https://kurtreadfrommongo.azurewebsites.net/api/readfrommongo", function(data, status){ 
         dataArray = JSON.parse(data);
         subsetArray = [];
         if(pWhich == 'all'){
